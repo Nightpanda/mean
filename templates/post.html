@@ -1,0 +1,25 @@
+<p> Testidataa postauksesta: {{singleBlogPost}}</p>
+<br>
+<p> Content: {{singleBlogPost}}</p>
+
+<!-- Comments -->
+
+<!--<button ng-click="addComment()">Comment!</button>-->
+
+<form ng-submit="addComment()">
+	<input type="text" placeholder="Title" ng-model="title"></input>
+	<input type="text" placeholder="Text" ng-model="text"></input>
+	<input type="text" placeholder="Author" ng-model="author"></input>
+	<button type="submit">Comment</button>
+</form>
+
+<!-- Show all comments about this post -->
+<div ng-repeat="comment in comments | orderBy: '-upvotes'">
+<table class="table">
+	<span ng-click="incrementUpvotes(comment)">^</span>
+	<tr>Otsikko:{{comment.title}}</tr>
+	<td>Author:{{comment.user}}</td>
+	<td>Upvotes: {{comment.upvotes}}</td>
+	<td>Text: {{comment.text}}</td>
+</div>
+</table>

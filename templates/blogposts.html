@@ -1,0 +1,5 @@
+<!-- Show all blog-posts -->
+<h1> List of Posts: </h1>
+<div ng-repeat="post in blogPosts">
+	<a ui-sref="singlepost({postId: post.id})">Tietoa {{post.id}}</a>
+</div>
