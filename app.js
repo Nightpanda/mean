@@ -4,7 +4,7 @@ var mongoose = require ("mongoose"); // The reason for this demo.
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.
 var uristring =
-'mongodb://user:passwd@ds033457.mongolab.com:33457/nightpanda'//process.env.MONGOLAB_URI || //mongodb://<dbuser>:<dbpassword>@ds033457.mongolab.com:33457/nightpanda
+'mongodb://admin:sumumumu@ds033457.mongolab.com:33457/nightpanda'//process.env.MONGOLAB_URI || //mongodb://<dbuser>:<dbpassword>@ds033457.mongolab.com:33457/nightpanda
 process.env.MONGOHQ_URL ||
 'mongodb://localhost/HelloMongoose';
 

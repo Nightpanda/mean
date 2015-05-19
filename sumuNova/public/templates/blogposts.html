@@ -1,0 +1,13 @@
+<!-- write new blog-post-->
+<form ng-submit="addBlogPost()">
+	<input type="text" placeholder="Title" ng-model="title"></input>
+	<input type="text" placeholder="Text" ng-model="text"></input>
+	<input type="text" placeholder="Author" ng-model="author"></input>
+	<button type="submit">Post</button>
+</form>
+
+<!-- Show all blog-posts -->
+<h1> List of Posts: </h1>
+<div ng-repeat="post in blogPosts">
+	<a ui-sref="singlepost({postId: post.id})">Tietoa {{post.id}}</a>
+</div>
