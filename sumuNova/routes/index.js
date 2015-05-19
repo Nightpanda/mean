@@ -4,6 +4,12 @@ var mongoose = require('mongoose');
 var BlogPosts = mongoose.model('BlogPosts');
 var Comment = mongoose.model('Comments');
 
+//Test connection to mongodb
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback() {
+	console.log("Connection succesful");
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });

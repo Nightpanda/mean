@@ -4,7 +4,7 @@ var blogServices = angular.module('blogServices', ['ngResource']);
 //A factory that will take handling requests from controllers and deliver them onwards
 blogServices.factory('blogApi', ['$resource',
 	function($resource) {
-		return $resource(':postId', {}, {
+		return $resource('/:postId', {}, {
 			query: {
 				method:'GET', 
 				params:{
