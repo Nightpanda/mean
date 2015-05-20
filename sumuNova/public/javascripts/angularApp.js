@@ -64,51 +64,58 @@ function($stateProvider, $urlRouterProvider) {
         newBlog.body = $scope.formtext;
         newBlog.author = $scope.formauthor;
 
-        console.log("Syötettävä tieto:" + newBlog.title);
-        //Send a save request to the server for the new blogpost
-        //$scope.newBlog = blogApi.save($scope.newBlog, function(){});
-        newBlog.$save();
-        console.log("Saved" + newBlog.title);
+        newBlog.$save(); //Simply save the new Blogpost to the mass
+
         $scope.formtitle = '';
         $scope.formtext = '';
         $scope.formauthor = '';
         };
 
     }
-
-    //$http.defaults.headers.common[] //custom header action to retrieve raw data instead of encrypted stuff
 ])
 
 .controller('singleBlogCtrl', [
     '$scope',
-    //'gitApi',
+    'commentApi',
     'blogApi',
     '$stateParams',
     //Get the information of a single blogpost.
-    function ($scope, blogApi, $stateParams){
+    function ($scope, blogApi, commentApi, $stateParams){
         console.log("client side request for single blogpost");
-        $scope.singleBlogPost = blogApi.get({postId: $stateParams.postId}); //Request to get data of a single post.
-        console.log($scope.singleBlogPost);
-
-        
+        $scope.singleBlogPost = blogApi.get({postId: $stateParams.postId}); //Request to get data of a single post.        
+        console.log($scope.singleBlogPost.comments);
     
     //Add a comment to a single blogpost
     $scope.addComment = function(){
-        if(!$scope.title || $scope.title === '') { return; }
-        if(!$scope.text || $scope.text === '') { return; }
-        $scope.comments.save({
-            title: $scope.title,    
-            text: $scope.text,
-            author: 'Anonymous',
-            upvotes: 0
-        });
-        $scope.title = '';
-        $scope.text = '';
-        }
+        if(!$scope.formtitle || $scope.formtitle === '') { return; } //if no title has been submited, don't post
+        if(!$scope.formtext || $scope.formtext === '') { return; }        
+
+        //Save it inside the current blogpost
+        //new comment
+
+        //var newComment = new commentApi();
+        var newComment = new commentApi($scope.singleBlogPost.comments);
+        
+        //Put the data from the form into the new instance
+        newComment.title = $scope.formtitle;
+        newComment.body = $scope.formtext;
+        newComment.author = $scope.formauthor;
+
+        newComment.$save();
+
+        //newComment.save({postId: $stateParams.postId}) //Simply save the new comment to the mass
+        //$scope.singleBlogPost.comments.save({newComment.title, newComment.body, newComment.author}, function(){});
+
+        $scope.formtitle = '';
+        $scope.formtext = '';
+        $scope.formauthor = '';
+        };
     //Upvote a single comment
     $scope.incrementUpvotes = function() {
-        $scope.comment.upvotes += 1;
+        $scope.singleBlogPost.comment.upvotes += 1;
         }
 
     }
+
 ])
+    

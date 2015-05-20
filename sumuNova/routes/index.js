@@ -28,7 +28,7 @@ router.get('/blog', function(req, res, next) {
 });
 
 //Fetch information for a single Blog
-router.get('/:_id', function(req, res, next) {
+router.get('/blog/:_id', function(req, res, next) {
 	console.log("request to fetch information for a single blogpost");
 
 	BlogPost.findById(req.params._id, function(err, results) {
@@ -41,8 +41,7 @@ router.get('/:_id', function(req, res, next) {
 //Post a blog post
 router.post('/blog', function(req, res, next) {
 	console.log("post a single blog post");
-	var singleBlogPost = new BlogPost(req.text);
-	console.log("Tekstiä pitäisi olla:" + "" + singleBlogPost.title);
+	var singleBlogPost = new BlogPost(req.body);
 
 	singleBlogPost.save(function(err,post){
 		if(err){return next(err); }
@@ -52,9 +51,9 @@ router.post('/blog', function(req, res, next) {
 });
 
 //Post a comment about a blog
-router.post('/:_id', function(req, res, next) {
+router.post('/blog/:_id', function(req, res, next) {
 	console.log("post a comment about a certain blogpost");
-	var singleComment = new Comment(req.text);
+	var singleComment = new Comment(req.body);
 
 	singleComment.save(function(err,post){
 		if(err){return next(err); }

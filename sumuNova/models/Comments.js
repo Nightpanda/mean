@@ -4,7 +4,7 @@ var CommentSchema = new mongoose.Schema({
 	//text title author upvotes
 	title: String,
 	body: String,
-	author: String,
+	author: {type: String, default: "Anonymous"},
 	upvotes: {type: Number, default: 0},
 	blogPost: {type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}
 });

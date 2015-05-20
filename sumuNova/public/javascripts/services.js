@@ -4,35 +4,29 @@ var blogServices = angular.module('blogServices', ['ngResource']);
 //A factory that will take handling requests from controllers and deliver them onwards
 blogServices.factory('blogApi', ['$resource',
 	function($resource) {
-		return $resource('/:postId', {}, {
+		return $resource('blog/:postId', {}, {
 			query: {
 				method:'GET', 
 				params:{
-					postId: 'blog'
+					postId: ''
 				}, 
 				isArray:true,
 				//headers:{'Content-Type':'application/vnd.github.v3.raw+json; charset=UTF-8'}
 			},
-			save: {
-				method:'POST',
-				
-				params:{
-					postId: 'blog'
-				},				
-				//isArray:true,
-			}
-			
 		});
 	}]);
 
-/*gitServices.factory('gitRaw', ['$resource',
+
+blogServices.factory('commentApi', ['$resource',
 	function($resource) {
-		return $resource('https://raw.githubusercontent.com/Nightpanda/websiteData/master/blogs/:postId', {}, {
-			get: {
-				method: 'GET',
-				isArray: false,
-				headers:{'Accept':'application/vnd.github.v3.raw'}
-			}
+		return $resource('blog/:postId', {}, {
+			query: {
+				method:'GET', 
+				params:{
+					postId: ''
+				}, 
+				isArray:true,
+				//headers:{'Content-Type':'application/vnd.github.v3.raw+json; charset=UTF-8'}
+			},
 		});
 	}]);
-*/
