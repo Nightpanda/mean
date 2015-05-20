@@ -3,7 +3,7 @@
 <br> {{singleBlogPost.title}}
 <br> {{singleBlogPost.body}}
 <br> {{singleBlogPost.author}}
-<br>
+<br> {{singleBlogPost.comments}}
 
 
 
@@ -19,6 +19,8 @@
 </form>
 
 <!-- Show all comments about this post -->
+<br>
+<p>List of Comments </p>
 <div ng-repeat="comment in comments | orderBy: '-upvotes'">
 <table class="table">
 	<span ng-click="incrementUpvotes(comment)">^</span>

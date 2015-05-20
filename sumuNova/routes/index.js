@@ -33,7 +33,6 @@ router.get('/blog/:_id', function(req, res, next) {
 
 	BlogPost.findById(req.params._id, function(err, results) {
 		if(err){return next(err); }
-		console.log(results);
 		res.send(results);
 	});
 });
@@ -54,6 +53,7 @@ router.post('/blog', function(req, res, next) {
 router.post('/blog/:_id', function(req, res, next) {
 	console.log("post a comment about a certain blogpost");
 	var singleComment = new Comment(req.body);
+	console.log(req.body);
 
 	singleComment.save(function(err,post){
 		if(err){return next(err); }

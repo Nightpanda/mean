@@ -76,14 +76,14 @@ function($stateProvider, $urlRouterProvider) {
 
 .controller('singleBlogCtrl', [
     '$scope',
-    'commentApi',
+    //'commentApi',
     'blogApi',
     '$stateParams',
     //Get the information of a single blogpost.
-    function ($scope, blogApi, commentApi, $stateParams){
+    function ($scope, blogApi, $stateParams){
         console.log("client side request for single blogpost");
         $scope.singleBlogPost = blogApi.get({postId: $stateParams.postId}); //Request to get data of a single post.        
-        console.log($scope.singleBlogPost.comments);
+        //var comments = $scope.singleBlogPost.comments;
     
     //Add a comment to a single blogpost
     $scope.addComment = function(){
@@ -94,14 +94,19 @@ function($stateProvider, $urlRouterProvider) {
         //new comment
 
         //var newComment = new commentApi();
-        var newComment = new commentApi($scope.singleBlogPost.comments);
+        //var newComment = new commentApi($scope.singleBlogPost.comments);
         
-        //Put the data from the form into the new instance
-        newComment.title = $scope.formtitle;
-        newComment.body = $scope.formtext;
-        newComment.author = $scope.formauthor;
 
-        newComment.$save();
+
+        //Put the data from the form into the new instance
+        //newComment.title = $scope.formtitle;
+        //newComment.body = $scope.formtext;
+        //newComment.author = $scope.formauthor;
+
+        //newComment.$save();
+
+        //blogApi.save({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
+        blogApi.save({comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
 
         //newComment.save({postId: $stateParams.postId}) //Simply save the new comment to the mass
         //$scope.singleBlogPost.comments.save({newComment.title, newComment.body, newComment.author}, function(){});

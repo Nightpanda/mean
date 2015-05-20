@@ -11,12 +11,15 @@ blogServices.factory('blogApi', ['$resource',
 					postId: ''
 				}, 
 				isArray:true,
-				//headers:{'Content-Type':'application/vnd.github.v3.raw+json; charset=UTF-8'}
+
+			},
+			update: {
+				method:'PUT'				
 			},
 		});
 	}]);
 
-
+/*
 blogServices.factory('commentApi', ['$resource',
 	function($resource) {
 		return $resource('blog/:postId', {}, {
@@ -30,3 +33,4 @@ blogServices.factory('commentApi', ['$resource',
 			},
 		});
 	}]);
+*/
