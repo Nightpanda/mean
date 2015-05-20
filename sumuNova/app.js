@@ -8,15 +8,15 @@ var bodyParser = require('body-parser');
 
 //*********' mongoDB stuff *****
 var mongoose = require ("mongoose"); // The reason for this demo.
-require('models/Comments'); //require the schemas
-require('models/BlogPosts');
+require('./models/Comments'); //require the schemas
+require('./models/BlogPosts');
 
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.
 var uristring =
-//'mongodb://admin:sumumumu@ds033457.mongolab.com:33457/nightpanda'//process.env.MONGOLAB_URI || //mongodb://<dbuser>:<dbpassword>@ds033457.mongolab.com:33457/nightpanda
+//'mongodb://user:password@ds033457.mongolab.com:33457/nightpanda'//process.env.MONGOLAB_URI || //mongodb://<dbuser>:<dbpassword>@ds033457.mongolab.com:33457/nightpanda
 //process.env.MONGOHQ_URL ||
-'mongodb://localhost/sumu/blogs';
+'mongodb://localhost:27017/sumu/blogs';
 
 // The http server will listen to an appropriate port, or default to
 // port 5000.

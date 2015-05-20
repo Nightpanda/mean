@@ -46,20 +46,33 @@ function($stateProvider, $urlRouterProvider) {
     'blogApi',
     function ($scope, blogApi){
         $scope.blogPosts = blogApi.query(); //Send a request to get all posts (response defined in services.js)
-    
+        //It's now an array of all the blogposts
+        
 
-    //Add a single blogpost
+        
+    //Add a single blogpost with ngresource method save
     $scope.addBlogPost = function(){
-        if(!$scope.title || $scope.title === '') { return; }
-        if(!$scope.text || $scope.text === '') { return; }
-        $scope.blogPosts.push({
-            title: $scope.title,    
-            text: $scope.text,
-            author: 'Anonymous',
-        });
-        $scope.title = '';
-        $scope.text = '';
-        }
+        if(!$scope.formtitle || $scope.formtitle === '') { return; } //if no title has been submited, don't post
+        if(!$scope.formtext || $scope.formtext === '') { return; }
+        if(!$scope.formauthor || $scope.formauthor === '') { return; } 
+        
+
+        //create a new instance to save
+        var newBlog = new blogApi();
+        //Put the data from the form into the new instance
+        newBlog.title = $scope.formtitle;
+        newBlog.body = $scope.formtext;
+        newBlog.author = $scope.formauthor;
+
+        console.log("Syötettävä tieto:" + newBlog.title);
+        //Send a save request to the server for the new blogpost
+        //$scope.newBlog = blogApi.save($scope.newBlog, function(){});
+        newBlog.$save();
+        console.log("Saved" + newBlog.title);
+        $scope.formtitle = '';
+        $scope.formtext = '';
+        $scope.formauthor = '';
+        };
 
     }
 
@@ -73,7 +86,9 @@ function($stateProvider, $urlRouterProvider) {
     '$stateParams',
     //Get the information of a single blogpost.
     function ($scope, blogApi, $stateParams){
+        console.log("client side request for single blogpost");
         $scope.singleBlogPost = blogApi.get({postId: $stateParams.postId}); //Request to get data of a single post.
+        console.log($scope.singleBlogPost);
 
         
     
@@ -81,7 +96,7 @@ function($stateProvider, $urlRouterProvider) {
     $scope.addComment = function(){
         if(!$scope.title || $scope.title === '') { return; }
         if(!$scope.text || $scope.text === '') { return; }
-        $scope.comments.push({
+        $scope.comments.save({
             title: $scope.title,    
             text: $scope.text,
             author: 'Anonymous',

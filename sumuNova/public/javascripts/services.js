@@ -12,15 +12,16 @@ blogServices.factory('blogApi', ['$resource',
 				}, 
 				isArray:true,
 				//headers:{'Content-Type':'application/vnd.github.v3.raw+json; charset=UTF-8'}
-			},/*
-			get: {
-				method:'GET',
-				isArray: false,
-				headers:{'Accept':'application/vnd.github.v3.raw'}
-				//headers:{'Accept':'application/vnd.github.v3.html+json; charset=UTF-8'}
-				//headers:{'Accept':'application/vnd.github.v3.html'}
+			},
+			save: {
+				method:'POST',
+				
+				params:{
+					postId: 'blog'
+				},				
+				//isArray:true,
 			}
-			*/
+			
 		});
 	}]);
 

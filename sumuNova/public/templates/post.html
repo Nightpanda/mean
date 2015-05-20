@@ -1,7 +1,7 @@
 <p> Testidataa postauksesta: {{singleBlogPost.id}}</p>
 <br>
 <br> {{singleBlogPost.title}}
-<br> {{singleBlogPost.text}}
+<br> {{singleBlogPost.body}}
 <br> {{singleBlogPost.author}}
 <br>
 
@@ -23,8 +23,8 @@
 <table class="table">
 	<span ng-click="incrementUpvotes(comment)">^</span>
 	<tr>Otsikko:{{comment.title}}</tr>
-	<td>Author:{{comment.user}}</td>
+	<td>Author:{{comment.author}}</td>
 	<td>Upvotes: {{comment.upvotes}}</td>
-	<td>Text: {{comment.text}}</td>
+	<td>Text: {{comment.body}}</td>
 </div>
 </table>
