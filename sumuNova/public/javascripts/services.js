@@ -10,7 +10,7 @@ blogServices.factory('blogApi', ['$resource',
 				params:{
 					postId: ''
 				}, 
-				isArray:true,
+				isArray:false,
 
 			},
 			update: {

@@ -93,20 +93,20 @@ function($stateProvider, $urlRouterProvider) {
         //Save it inside the current blogpost
         //new comment
 
-        //var newComment = new commentApi();
         //var newComment = new commentApi($scope.singleBlogPost.comments);
-        
-
+        var singlePost = new blogApi.get({postId: $stateParams.postId});
+        console.log(singlePost);
+        //var allComments = singlePost.comments;
+        //console.log(allComments);
 
         //Put the data from the form into the new instance
-        //newComment.title = $scope.formtitle;
-        //newComment.body = $scope.formtext;
-        //newComment.author = $scope.formauthor;
+        singlePost.comments = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
 
-        //newComment.$save();
-
-        //blogApi.save({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
-        blogApi.save({comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
+        singlePost.$update();
+        //allComments.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
+        //allComments.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
+        //blogApi.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
+        //blogApi.save({comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
 
         //newComment.save({postId: $stateParams.postId}) //Simply save the new comment to the mass
         //$scope.singleBlogPost.comments.save({newComment.title, newComment.body, newComment.author}, function(){});
