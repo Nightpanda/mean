@@ -93,16 +93,19 @@ function($stateProvider, $urlRouterProvider) {
         //Save it inside the current blogpost
         //new comment
 
-        //var newComment = new commentApi($scope.singleBlogPost.comments);
-        var singlePost = new blogApi.get({postId: $stateParams.postId});
-        console.log(singlePost);
+        var newComment = new blogApi();
+        //var singlePost = new blogApi.get({postId: $stateParams.postId});
+        //console.log(singlePost);
         //var allComments = singlePost.comments;
         //console.log(allComments);
 
         //Put the data from the form into the new instance
-        singlePost.comments = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
+        //singlePost.comments = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
+        //var newComment = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
 
-        singlePost.$save();
+        newComment.$save();
+        //singlePost.$save();
+        //newComment.save({postId: $stateParams.postId}, newComment);
         //allComments.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
         //allComments.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
         //blogApi.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});

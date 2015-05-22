@@ -9,5 +9,5 @@
 <!-- Show all blog-posts -->
 <h1> List of Posts: </h1>
 <div ng-repeat="post in blogPosts">
-	<a ui-sref="singlepost({postId: post._id})">Tietoa {{post}}</a>
+	<a ui-sref="singlepost({postId: post._id})">Tietoa {{post.title}}</a>
 </div>
