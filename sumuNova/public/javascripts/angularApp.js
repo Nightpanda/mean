@@ -102,7 +102,7 @@ function($stateProvider, $urlRouterProvider) {
         //Put the data from the form into the new instance
         singlePost.comments = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
 
-        singlePost.$update();
+        singlePost.$save();
         //allComments.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
         //allComments.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
         //blogApi.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
