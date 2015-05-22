@@ -1,4 +1,5 @@
 <!-- write new blog-post-->
+<p> For testing purposes, post a new blog post.</p>
 <form ng-submit="addBlogPost()">
 	<input type="text" placeholder="Title" ng-model="formtitle"></input>
 	<input type="text" placeholder="Text" ng-model="formtext"></input>
@@ -7,6 +8,12 @@
 </form>
 
 <!-- Show all blog-posts -->
+<div class="row">
+  <div class="panel panel-default">
+    <!--<div class="panel-heading"> The Game! </div>-->
+    <div class="panel-body">
+      <div class="col-sm-24 col-md-12">
+        <p class="text-center">
 <h1> List of Posts: </h1>
 <div ng-repeat="post in blogPosts">
 	<a ui-sref="singlepost({postId: post._id})">Tietoa {{post.title}}</a>
