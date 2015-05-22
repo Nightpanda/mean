@@ -7,14 +7,36 @@
 	<button type="submit">Post</button>
 </form>
 
-<!-- Show all blog-posts -->
-<div class="row">
+<!-- show current post in main panel!-->
+<div class="col-sm-18 col-md-9">
   <div class="panel panel-default">
-    <!--<div class="panel-heading"> The Game! </div>-->
-    <div class="panel-body">
-      <div class="col-sm-24 col-md-12">
-        <p class="text-center">
-<h1> List of Posts: </h1>
-<div ng-repeat="post in blogPosts">
-	<a ui-sref="singlepost({postId: post._id})">Tietoa {{post.title}}</a>
+  <div class="panel-heading"> <h1> {{singlePost.title}} </h1> </div>
+  	<div class="panel-body">
+  	   	<p class="text-center">
+			{{singlePost.text}}</a>
+			
+			<br>
+			{{singlePost.author}}
+			</p>
+		</div>
+	</div>
 </div>
+
+<!-- Show all blog-posts in a side panel -->
+<div class="row">
+<div class="col-sm-6 col-md-3">
+  <div class="panel panel-default">
+  <div class="panel-heading"> <h1> List of Posts: </h1> </div>
+  	<div class="panel-body">
+    	
+        	<p class="text-center">
+
+				<div ng-repeat="post in blogPosts">
+					<a ui-sref="singlepost({postId: post._id})">Tietoa {{post.title}}</a>
+				</div>
+			</p>
+		</div>
+	</div>
+</div>
+</div>
+

@@ -44,9 +44,19 @@ function($stateProvider, $urlRouterProvider) {
 .controller('blogCtrl', [
     '$scope',
     'blogApi',
-    function ($scope, blogApi){
+    '$stateParams',
+    function ($scope, blogApi, $stateParams){
         $scope.blogPosts = blogApi.query(); //Send a request to get all posts (response defined in services.js)
         //It's now an array of all the blogposts
+        //find the newset blogpost Id
+
+        $scope.blogPosts.$promise.then(function (result) {
+        arrayBlogs = $scope.blogPosts;
+        lenBlogs = arrayBlogs.length;
+        latestBlog = arrayBlogs[lenBlogs-1];
+        blogId = latestBlog._id;
+        $scope.singlePost = blogApi.get({postId: blogId }); //Request to get data of a single post.            
+        });
         
 
         
