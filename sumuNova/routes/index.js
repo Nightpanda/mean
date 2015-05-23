@@ -57,22 +57,24 @@ router.post('/blog', function(req, res, next) {
 	});
 });
 
+/*
 //Post a comment about a blog
 router.post('/blog/:_id', function(req, res, next) {
 	console.log("post a comment about a certain blogpost");
-	var singleComment = new Comment(req.body);
-	console.log(req.body);
+	var newComment = new Comment(req.body);
+	console.log(newComment);
 	//singleComment.blogPost = req.blogPost;
 	/*BlogPost.findByIdAndUpdate(req.params._id, singleComment, function(err, results) {
 		if(err){ return next(err);}
 		results.save('Saved the comment');
 	})*/
-	
-	singleComment.save(function(err,comment){
+	/*
+	newComment.save(function(err,comment){
 		if(err){return next(err); }
-		console.log(singleComment);
-		res.json(singleComment);
-	});
+		console.log(newComment);
+		//res.json(newComment);
+		newComment.save("saved a new comment");
+	});*/
 	
 	/*singleComment.save(function(err,singleComment){
 		if(err){return next(err); }
@@ -82,21 +84,33 @@ router.post('/blog/:_id', function(req, res, next) {
 			if(err){ return next(err); }
 			res.json(singleComment);
 		});
-	});*/
+	});
 });
+*/
 
-//Update the comments of a blog
-router.put('/blog/:_id/comments/:_id', function(req, res, next) {
-	console.log("post a comment about a certain blogpost");
-	var singleComment = new Comment(req.body);
+//Update the blog with a comment
+router.put('/blog/:_id', function(req, res, next) {
+	console.log("update a blogpost with comments");
 	console.log(req.body);
+	var newComment = new Comment(req.body);
+	console.log(req.params._id);
+    console.log(newComment);
 
+
+	BlogPost.findByIdAndUpdate(req.params._id, newComment, function(err, results) {
+        if(err){ return next(err); }
+        //res.json(results);
+        
+        results.save('Saved bueno');
+    });
+	/*
 	singleComment.save(function(err,post){
 		if(err){return next(err); }
 		console.log(singleComment);
 		res.json(singleComment);
-
+	
 	});
+	*/
 });
 
 

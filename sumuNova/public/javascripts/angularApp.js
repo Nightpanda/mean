@@ -48,7 +48,7 @@ function($stateProvider, $urlRouterProvider) {
     function ($scope, blogApi, $stateParams){
         $scope.blogPosts = blogApi.query(); //Send a request to get all posts (response defined in services.js)
         //It's now an array of all the blogposts
-        //find the newset blogpost Id
+        //find the newest blogpost Id
 
         $scope.blogPosts.$promise.then(function (result) {
         arrayBlogs = $scope.blogPosts;
@@ -94,16 +94,33 @@ function($stateProvider, $urlRouterProvider) {
         console.log("client side request for single blogpost");
         $scope.singleBlogPost = blogApi.get({postId: $stateParams.postId}); //Request to get data of a single post.        
         //var comments = $scope.singleBlogPost.comments;
-    
+        
+        $scope.singleBlogPost.$promise.then(function (result) {
+        currentBlog = $scope.singleBlogPost;
+        allComments = currentBlog.comments;
+        
+        console.log(allComments);
+        $scope.singleBlogPost = result;
+        });
+
     //Add a comment to a single blogpost
     $scope.addComment = function(){
         if(!$scope.formtitle || $scope.formtitle === '') { return; } //if no title has been submited, don't post
         if(!$scope.formtext || $scope.formtext === '') { return; }        
 
+        //Read the information of the comment
+        var newComment = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
+        //push a new comment to the end of the array
+        allComments.push(newComment);
+        //Update the blog so the comment sticks
+        console.log(currentBlog._id);
+        blogApi.update({postId: currentBlog._id}, allComments);
+
+
         //Save it inside the current blogpost
         //new comment
 
-        var newComment = new blogApi();
+        //var newComment = new blogApi();
         //var singlePost = new blogApi.get({postId: $stateParams.postId});
         //console.log(singlePost);
         //var allComments = singlePost.comments;
@@ -111,9 +128,10 @@ function($stateProvider, $urlRouterProvider) {
 
         //Put the data from the form into the new instance
         //singlePost.comments = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
-        //var newComment = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
+        
 
-        newComment.$save();
+        //blogApi.save({postId: currentBlog._id}, newComment)
+        //newComment.save();
         //singlePost.$save();
         //newComment.save({postId: $stateParams.postId}, newComment);
         //allComments.update({postId: $stateParams.postId}, {comments: {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor}});
