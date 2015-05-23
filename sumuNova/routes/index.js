@@ -57,23 +57,26 @@ router.post('/blog', function(req, res, next) {
 	});
 });
 
-/*
+
 //Post a comment about a blog
 router.post('/blog/:_id', function(req, res, next) {
 	console.log("post a comment about a certain blogpost");
 	var newComment = new Comment(req.body);
 	console.log(newComment);
 	//singleComment.blogPost = req.blogPost;
-	/*BlogPost.findByIdAndUpdate(req.params._id, singleComment, function(err, results) {
+	
+	BlogPost.findByIdAndUpdate(req.params._id, newComment, function(err, results) {
 		if(err){ return next(err);}
-		results.save('Saved the comment');
-	})*/
+		results.save(newComment);
+	});
+	
 	/*
-	newComment.save(function(err,comment){
+	BlogPost.save(function(err,comment){
+		console.log("Inside the save");
 		if(err){return next(err); }
 		console.log(newComment);
-		//res.json(newComment);
-		newComment.save("saved a new comment");
+		res.json(newComment);
+		//newComment.save("saved a new comment");
 	});*/
 	
 	/*singleComment.save(function(err,singleComment){
@@ -86,7 +89,7 @@ router.post('/blog/:_id', function(req, res, next) {
 		});
 	});
 });
-*/
+
 
 //Update the blog with a comment
 router.put('/blog/:_id', function(req, res, next) {

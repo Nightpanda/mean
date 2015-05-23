@@ -111,10 +111,10 @@ function($stateProvider, $urlRouterProvider) {
         //Read the information of the comment
         var newComment = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
         //push a new comment to the end of the array
-        allComments.push(newComment);
-        //Update the blog so the comment sticks
+        //allComments.push(newComment);
+        //dave the blog so the comment sticks
         console.log(currentBlog._id);
-        blogApi.update({postId: currentBlog._id}, allComments);
+        blogApi.save({postId: currentBlog._id}, newComment);
 
 
         //Save it inside the current blogpost
