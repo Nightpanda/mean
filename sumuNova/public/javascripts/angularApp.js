@@ -97,9 +97,9 @@ function($stateProvider, $urlRouterProvider) {
         
         $scope.singleBlogPost.$promise.then(function (result) {
         currentBlog = $scope.singleBlogPost;
-        allComments = currentBlog.comments;
+        //allComments = currentBlog.comments;
         
-        console.log(allComments);
+        //console.log(allComments);
         $scope.singleBlogPost = result;
         });
 
@@ -110,10 +110,14 @@ function($stateProvider, $urlRouterProvider) {
 
         //Read the information of the comment
         var newComment = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
+        //currentBlog.comments.push(newComment);
+        //console.log(currentBlog.comments);
+
         //push a new comment to the end of the array
         //allComments.push(newComment);
         //dave the blog so the comment sticks
-        console.log(currentBlog._id);
+        //console.log(currentBlog._id);
+        //console.log(newComment);
         blogApi.save({postId: currentBlog._id}, newComment);
 
 

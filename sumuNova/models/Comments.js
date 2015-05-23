@@ -6,7 +6,7 @@ var CommentSchema = new mongoose.Schema({
 	body: String,
 	author: {type: String, default: "Anonymous"},
 	upvotes: {type: Number, default: 0},
-	//blogPost: {type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}
+	blogPost: {type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}
 });
 
 mongoose.model('Comment', CommentSchema);

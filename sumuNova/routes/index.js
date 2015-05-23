@@ -61,14 +61,26 @@ router.post('/blog', function(req, res, next) {
 //Post a comment about a blog
 router.post('/blog/:_id', function(req, res, next) {
 	console.log("post a comment about a certain blogpost");
+	console.log("req.body:" + req.body);
 	var newComment = new Comment(req.body);
-	console.log(newComment);
+	console.log("New Comment:" + "" + newComment);
 	//singleComment.blogPost = req.blogPost;
+	/*
+	BlogPost.save(function(err, newComment){
+		if(err){ return next(err); }
+
+		res.json(newComment);
+	})
+*/
+
 	
-	BlogPost.findByIdAndUpdate(req.params._id, newComment, function(err, results) {
+	BlogPost.findById(req.params._id, function(err, doc) {
 		if(err){ return next(err);}
-		results.save(newComment);
+		doc.comments.push(newComment);
+		console.log("results" + doc);
+		doc.save();
 	});
+	
 	
 	/*
 	BlogPost.save(function(err,comment){
