@@ -92,3 +92,15 @@ body {
 	color: #000;
 	background-color: #728FA1;
 }
+
+input, text{
+	color: #728FA1;
+}
+
+button {
+	color: #728FA1;
+}
+
+a {
+	color: #FFF;
+}

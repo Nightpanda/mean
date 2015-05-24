@@ -44,30 +44,34 @@
 
 	<!-- Show all comments about this post -->
 		<div ng-repeat="comment in singlePost.comments | orderBy: '-upvotes'">
-		<table class="table">
-			<!--<span ng-click="incrementUpvotes(comment)">^</span>-->
-			<td>Author:{{comment.author}}</td>
+		<div class="media">
+			<div class="media-body"><!--<span ng-click="incrementUpvotes(comment)">^</span>-->
+			<h5 class="media-heading">{{comment.author}}</h5>
 			<!--<td>Upvotes: {{comment.upvotes}}</td>-->
-			<td>Text: {{comment.body}}</td>
-		</table>
+			{{comment.body}}
+			</div>
 		</div>
 		
+		</div>
 	</div>
 	</div>
+</div>
 
 <!-- Show all blog-posts in a side panel -->
 <div class="col-xs-3">
   <div class="panel panel-default">
-  <div class="panel-heading"> <h1> List of Posts: </h1> </div>
+  <div class="panel-heading"> <h3> Old posts: </h3> </div>
   	<div class="panel-body">
     	
         	<p class="text-center">
 
 				<div ng-repeat="post in blogPosts">
-					<a ui-sref="singlepost({postId: post._id})">{{post.title}} {{post.date}}</a>
+					<a ui-sref="singlepost({postId: post._id})">{{post.title}}</a>
+					<!--<button type="button" class="btn btn-link"><a ui-sref="singlepost({postId: post._id})" class="text-default">{{post.title}}</a></button>-->
 				</div>
 			</p>
 		</div>
 	</div>
 </div>
+
 

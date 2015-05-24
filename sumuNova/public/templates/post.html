@@ -1,3 +1,13 @@
+<!-- write new blog-post-->
+<!--
+<p> For testing purposes, post a new blog post.</p>
+<form ng-submit="addBlogPost()">
+	<input type="text" placeholder="Title" ng-model="formtitle"></input>
+	<textarea ng-model="formtext" placeholder="Text"></textarea>
+	<input type="text" placeholder="Author" ng-model="formauthor"></input>
+	<button type="submit">Post</button>
+</form>-->
+
 <!-- show current post in main panel!-->
 <div class="col-xs-12 col-sm-9">
   <div class="panel panel-default">
@@ -34,21 +44,23 @@
 
 	<!-- Show all comments about this post -->
 		<div ng-repeat="comment in singlePost.comments | orderBy: '-upvotes'">
-		<table class="table">
-			<!--<span ng-click="incrementUpvotes(comment)">^</span>-->
-			<td>Author:{{comment.author}}</td>
+		<div class="media">
+			<div class="media-body"><!--<span ng-click="incrementUpvotes(comment)">^</span>-->
+			<h5 class="media-heading">{{comment.author}}</h5>
 			<!--<td>Upvotes: {{comment.upvotes}}</td>-->
-			<td>Text: {{comment.body}}</td>
-		</table>
+			{{comment.body}}
+			</div>
 		</div>
 		
+		</div>
 	</div>
 	</div>
+</div>
 
 <!-- Show all blog-posts in a side panel -->
 <div class="col-xs-3">
   <div class="panel panel-default">
-  <div class="panel-heading"> <h1> List of Posts: </h1> </div>
+  <div class="panel-heading"> <h3> Old posts: </h3> </div>
   	<div class="panel-body">
     	
         	<p class="text-center">
@@ -60,3 +72,4 @@
 		</div>
 	</div>
 </div>
+
