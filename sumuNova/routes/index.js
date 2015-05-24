@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var BlogPost = mongoose.model('BlogPost');
-var Comment = mongoose.model('Comment');
+var GameComment = mongoose.model('GameComment');
 
 
 var db = mongoose.connection;
@@ -62,9 +62,9 @@ router.post('/blog', function(req, res, next) {
 router.post('/blog/:_id', function(req, res, next) {
 	console.log("post a comment about a certain blogpost");
 	//console.log("req.body:" + req.body);
-	var newComment = new Comment();
-	newComment.body = req.body.body;
-	newComment.author = req.body.author;
+	//var newComment = new Comment();
+	//newComment.body = req.body.body;
+	//newComment.author = req.body.author;
 	//var newComment = new Comment(req.body);
 	//console.log("New comment sisältää" + "" + newComment);
 	//var blogUpdate = req.body;
@@ -87,7 +87,8 @@ router.post('/blog/:_id', function(req, res, next) {
 			if(err){ return next(err); }
 			res.json(newComment);
 		});*/
-		foundPost.comments.push(newComment);
+		//foundPost.comments.push(newComment);
+		foundPost.comments.push({body: req.body.body, author: req.body.author});
 		console.log(foundPost);
 		//console.log("results" + blogUpdate);
 		foundPost.save(function(err) {
