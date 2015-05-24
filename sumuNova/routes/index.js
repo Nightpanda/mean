@@ -61,9 +61,14 @@ router.post('/blog', function(req, res, next) {
 //Post a comment about a blog
 router.post('/blog/:_id', function(req, res, next) {
 	console.log("post a comment about a certain blogpost");
-	console.log("req.body:" + req.body);
-	var newComment = new Comment(req.body);
-	console.log("New Comment:" + "" + newComment);
+	//console.log("req.body:" + req.body);
+	var newComment = new Comment();
+	newComment.body = req.body.body;
+	newComment.author = req.body.author;
+	//var newComment = new Comment(req.body);
+	//console.log("New comment sisältää" + "" + newComment);
+	//var blogUpdate = req.body;
+	//console.log("New Comment:" + "" + newComment);
 	//singleComment.blogPost = req.blogPost;
 	/*
 	BlogPost.save(function(err, newComment){
@@ -72,13 +77,23 @@ router.post('/blog/:_id', function(req, res, next) {
 		res.json(newComment);
 	})
 */
-
-	
-	BlogPost.findById(req.params._id, function(err, doc) {
+	//console.log("Log id" + "" + req.params._id);
+	BlogPost.findById(req.params._id, function(err, foundPost) {
+	//BlogPost.findById(req.params._id, function(err, blogUpdate) {
+		//console.log(req.params._id);
+		/*
 		if(err){ return next(err);}
-		doc.comments.push(newComment);
-		console.log("results" + doc);
-		doc.save();
+		newComment.save(function(err,post){
+			if(err){ return next(err); }
+			res.json(newComment);
+		});*/
+		foundPost.comments.push(newComment);
+		console.log(foundPost);
+		//console.log("results" + blogUpdate);
+		foundPost.save(function(err) {
+			if (!err) console.log("success!");
+		});
+
 	});
 	
 	

@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 var CommentSchema = new mongoose.Schema({
 	//text title author upvotes
-	title: String,
+	//title: String,
 	body: String,
 	author: {type: String, default: "Anonymous"},
 	upvotes: {type: Number, default: 0},
-	blogPost: {type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}
+	//blogPost: {type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}
 });
 
 mongoose.model('Comment', CommentSchema);
