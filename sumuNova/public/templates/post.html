@@ -66,10 +66,12 @@
         	<p class="text-center">
 
 				<div ng-repeat="post in blogPosts">
-					<a ui-sref="singlepost({postId: post._id})">{{post.title}} {{post.date}}</a>
+					<a ui-sref="singlepost({postId: post._id})">{{post.title}}</a>
+					<!--<button type="button" class="btn btn-link"><a ui-sref="singlepost({postId: post._id})" class="text-default">{{post.title}}</a></button>-->
 				</div>
 			</p>
 		</div>
 	</div>
 </div>
+
 
