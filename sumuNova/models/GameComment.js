@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var CommentsGeneral = new mongoose.Schema({
+var GameComment = new mongoose.Schema({
 	//text title author upvotes
 	//title: String,
 	text: String,
@@ -9,4 +9,4 @@ var CommentsGeneral = new mongoose.Schema({
 	//blogPost: {type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}
 });
 
-mongoose.model('Comments', CommentsGeneral);
+mongoose.model('GameComment', GameComment);

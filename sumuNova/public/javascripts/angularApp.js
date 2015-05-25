@@ -51,12 +51,18 @@ function($stateProvider, $urlRouterProvider) {
         //find the newest blogpost Id
 
         $scope.blogPosts.$promise.then(function (result) {
-        arrayBlogs = $scope.blogPosts;
-        lenBlogs = arrayBlogs.length;
-        latestBlog = arrayBlogs[lenBlogs-1];
-        blogId = latestBlog._id;
-        $scope.singlePost = blogApi.get({postId: blogId }); //Request to get data of a single post.            
+            arrayBlogs = $scope.blogPosts;
+  
+            lenBlogs = arrayBlogs.length;
+            latestBlog = arrayBlogs[lenBlogs-1];
+            console.log(latestBlog);
+            blogId = latestBlog._id;
+            console.log(latestBlog._id);
+            $scope.singlePost = blogApi.get({postId: blogId }); //Request to get data of a single post.
+            console.log($scope.singlePost);
         });
+
+
         
 
         
@@ -105,19 +111,26 @@ function($stateProvider, $urlRouterProvider) {
 
     //Add a comment to a single blogpost
     $scope.addComment = function(){
-        if(!$scope.formtitle || $scope.formtitle === '') { return; } //if no title has been submited, don't post
+        //if(!$scope.formtitle || $scope.formtitle === '') { return; } //if no title has been submited, don't post
         if(!$scope.formtext || $scope.formtext === '') { return; }        
 
         //Read the information of the comment
-        var newComment = {title: $scope.formtitle, body: $scope.formtext, author: $scope.formauthor};
+        var newComment = {body: $scope.formtext, author: $scope.formauthor};
+        //var newComment = new blogApi();
+        //newComment.body = $scope.formtext;
+        //newComment.author = $scope.formauthor;
         //currentBlog.comments.push(newComment);
         //console.log(currentBlog.comments);
 
         //push a new comment to the end of the array
+        //currentBlog.comments.push(newComment);
+        //allComments = currentBlog.comments;
+        //console.log(currentBlog.comments);
         //allComments.push(newComment);
         //dave the blog so the comment sticks
         //console.log(currentBlog._id);
         //console.log(newComment);
+        //console.log(currentBlog);
         blogApi.save({postId: currentBlog._id}, newComment);
 
 

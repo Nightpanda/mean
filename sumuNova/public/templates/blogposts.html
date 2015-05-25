@@ -1,22 +1,27 @@
 <!-- write new blog-post-->
+<!--
 <p> For testing purposes, post a new blog post.</p>
 <form ng-submit="addBlogPost()">
 	<input type="text" placeholder="Title" ng-model="formtitle"></input>
-	<input type="text" placeholder="Text" ng-model="formtext"></input>
+	<textarea ng-model="formtext" placeholder="Text"></textarea>
 	<input type="text" placeholder="Author" ng-model="formauthor"></input>
 	<button type="submit">Post</button>
-</form>
+</form>-->
 
 <!-- show current post in main panel!-->
 <div class="col-sm-18 col-md-9">
   <div class="panel panel-default">
   <div class="panel-heading"> <h1> {{singlePost.title}} </h1> </div>
   	<div class="panel-body">
-  	   	<p class="text-center">
-			{{singlePost.text}}</a>
-			
+  	   	
+			<div ng-repeat="paragraph in singlePost.body">
+			<p class="text-left">{{paragraph}}<br></p>
+			</div>
+			<p class="text-center">
 			<br>
 			{{singlePost.author}}
+			<br>
+			{{singlePost.date}}
 			</p>
 		</div>
 	</div>
@@ -32,7 +37,7 @@
         	<p class="text-center">
 
 				<div ng-repeat="post in blogPosts">
-					<a ui-sref="singlepost({postId: post._id})">Tietoa {{post.title}}</a>
+					<a ui-sref="singlepost({postId: post._id})">{{post.title}} {{post.date}}</a>
 				</div>
 			</p>
 		</div>

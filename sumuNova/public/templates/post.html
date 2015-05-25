@@ -3,7 +3,6 @@
 <br> {{singleBlogPost.title}}
 <br> {{singleBlogPost.body}}
 <br> {{singleBlogPost.author}}
-<br> {{singleBlogPost.comments}}
 
 
 
@@ -12,7 +11,6 @@
 <!--<button ng-click="addComment()">Comment!</button>-->
 
 <form ng-submit="addComment()">
-	<input type="text" placeholder="Title" ng-model="formtitle"></input>
 	<input type="text" placeholder="Text" ng-model="formtext"></input>
 	<input type="text" placeholder="Author" ng-model="formauthor"></input>
 	<button type="submit">Comment</button>
@@ -21,7 +19,7 @@
 <!-- Show all comments about this post -->
 <br>
 <p>List of Comments </p>
-<div ng-repeat="comment in comments | orderBy: '-upvotes'">
+<div ng-repeat="comment in singleBlogPost.comments | orderBy: '-upvotes'">
 <table class="table">
 	<span ng-click="incrementUpvotes(comment)">^</span>
 	<tr>Otsikko:{{comment.title}}</tr>

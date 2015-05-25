@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 //*********' mongoDB stuff *****
 var mongoose = require ("mongoose"); // The reason for this demo.
-require('./models/Comments'); //require the schemas
+require('./models/GameComment'); //require the schemas
 require('./models/BlogPosts');
 
 // Here we find an appropriate database to connect to, defaulting to
