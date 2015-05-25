@@ -81,9 +81,14 @@ body {
 }
 
 .css-form input.ng-invalid.ng-touched {
-	color: #FFF;
+	color: #000;
 }
 
 .css-form input.ng-valid.ng-touched {
-	color: #FFF;
+	color: #000;
+}
+
+.jumbotron {
+	color: #000;
+	background-color: #728FA1;
 }
