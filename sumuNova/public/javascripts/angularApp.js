@@ -51,12 +51,18 @@ function($stateProvider, $urlRouterProvider) {
         //find the newest blogpost Id
 
         $scope.blogPosts.$promise.then(function (result) {
-        arrayBlogs = $scope.blogPosts;
-        lenBlogs = arrayBlogs.length;
-        latestBlog = arrayBlogs[lenBlogs-1];
-        blogId = latestBlog._id;
-        $scope.singlePost = blogApi.get({postId: blogId }); //Request to get data of a single post.            
+            arrayBlogs = $scope.blogPosts;
+  
+            lenBlogs = arrayBlogs.length;
+            latestBlog = arrayBlogs[lenBlogs-1];
+            console.log(latestBlog);
+            blogId = latestBlog._id;
+            console.log(latestBlog._id);
+            $scope.singlePost = blogApi.get({postId: blogId }); //Request to get data of a single post.
+            console.log($scope.singlePost);
         });
+
+
         
 
         

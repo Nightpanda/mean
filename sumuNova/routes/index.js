@@ -47,11 +47,13 @@ router.get('/blog/:_id', function(req, res, next) {
 //Post a blog post
 router.post('/blog', function(req, res, next) {
 	console.log("post a single blog post");
+	console.log(req);
 	var singleBlogPost = new BlogPost(req.body);
+	
 
 	singleBlogPost.save(function(err,post){
 		if(err){return next(err); }
-		console.log(post);
+		//console.log(post);
 		res.json(singleBlogPost);
 
 	});
