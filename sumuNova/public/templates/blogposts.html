@@ -25,10 +25,37 @@
 			</p>
 		</div>
 	</div>
-</div>
+	<div class="panel panel-default">
+	<div class="panel-heading"><h2>Leave a comment!</h2></div>
+	<div class="panel-body">
+
+	<!--Let the user be nice and post a comment-->
+		<form ng-submit="addComment()">
+			<input type="text" placeholder="Text" ng-model="formtext"></input>
+			<input type="text" placeholder="Author" ng-model="formauthor"></input>
+			<button type="submit">Comment</button>
+		</form>
+	</div>
+	</div>
+
+	<div class="panel panel-default">
+	<div class="panel-heading"><h2>Previous Comments</h2></div>
+	<div class="panel-body">
+
+	<!-- Show all comments about this post -->
+		<div ng-repeat="comment in singlePost.comments | orderBy: '-upvotes'">
+		<table class="table">
+			<!--<span ng-click="incrementUpvotes(comment)">^</span>-->
+			<td>Author:{{comment.author}}</td>
+			<!--<td>Upvotes: {{comment.upvotes}}</td>-->
+			<td>Text: {{comment.body}}</td>
+		</table>
+		</div>
+		
+	</div>
+	</div>
 
 <!-- Show all blog-posts in a side panel -->
-<div class="row">
 <div class="col-sm-6 col-md-3">
   <div class="panel panel-default">
   <div class="panel-heading"> <h1> List of Posts: </h1> </div>
@@ -42,6 +69,5 @@
 			</p>
 		</div>
 	</div>
-</div>
 </div>
 

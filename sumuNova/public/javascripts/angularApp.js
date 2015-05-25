@@ -86,6 +86,23 @@ function($stateProvider, $urlRouterProvider) {
         $scope.formtext = '';
         $scope.formauthor = '';
         };
+    //Add a comment to a single blogpost
+    $scope.addComment = function(){
+        if(!$scope.formtext || $scope.formtext === '') { return; }        
+
+        var newComment = {body: $scope.formtext, author: $scope.formauthor};
+        blogApi.save({postId: latestBlog._id}, newComment);
+
+        $scope.formtitle = '';
+        $scope.formtext = '';
+        $scope.formauthor = '';
+        };
+    //Upvote a single comment
+    /*
+    $scope.incrementUpvotes = function() {
+        $scope.singleBlogPost.comment.upvotes += 1;
+        }
+    */
 
     }
 ])
@@ -97,16 +114,17 @@ function($stateProvider, $urlRouterProvider) {
     '$stateParams',
     //Get the information of a single blogpost.
     function ($scope, blogApi, $stateParams){
+        $scope.blogPosts = blogApi.query(); //Send a request to get all posts (response defined in services.js)
         console.log("client side request for single blogpost");
-        $scope.singleBlogPost = blogApi.get({postId: $stateParams.postId}); //Request to get data of a single post.        
+        $scope.singlePost = blogApi.get({postId: $stateParams.postId}); //Request to get data of a single post.        
         //var comments = $scope.singleBlogPost.comments;
         
-        $scope.singleBlogPost.$promise.then(function (result) {
-        currentBlog = $scope.singleBlogPost;
+        $scope.singlePost.$promise.then(function (result) {
+        currentBlog = $scope.singlePost;
         //allComments = currentBlog.comments;
         
         //console.log(allComments);
-        $scope.singleBlogPost = result;
+        $scope.singlePost = result;
         });
 
     //Add a comment to a single blogpost
