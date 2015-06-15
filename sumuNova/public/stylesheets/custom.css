@@ -20,8 +20,8 @@ Row with equal height columns
 
 .thumbnail {
 	background: #728FA1;
-	width: 300px;
-	height: 200px;	
+	width: auto;
+	height: auto;	
 }
 .panel-body {
 	background: #728FA1;
@@ -92,6 +92,8 @@ body {
 .jumbotron {
 	color: #000;
 	background-color: #728FA1;
+	background-image: url("/images/Samurai_promo.png");
+	background-size: cover;
 }
 
 input, text{

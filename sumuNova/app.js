@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var mongoose = require ("mongoose"); // The reason for this demo.
 require('./models/GameComment'); //require the schemas
 require('./models/BlogPosts');
+require('./models/GamePosts');
 
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.

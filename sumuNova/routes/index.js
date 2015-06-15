@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var BlogPost = mongoose.model('BlogPost');
 var GameComment = mongoose.model('GameComment');
+var GamePost = mongoose.model('GamePost');
 
 
 var db = mongoose.connection;
