@@ -1,14 +1,6 @@
 <div class="row">
   <div class ="col-sm-24 col-md-12">
-    <div class="table">
-      <tr>
-      <div ng-repeat="image in singleGamePost.images">
-        <td><img src={{image}} class="img-responsive" </td> 
-      </div>
-      </tr>
-
-    </div>  
-
+    
   </div>
 
 </div>
@@ -18,25 +10,29 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			
-				<p class="text-center"><h2>{{singleGamePost.title}}</h2> <h5>{{singleGamePost.version}} {{singleGamePost.status}}</h5> <br>
-        <a href={{singleGamePost.downloadLink}}>Link</a>
-        <br>
-				<div ng-repeat="paragraph in singleGamePost.body">
-          <p class="text-left">{{paragraph}}<br></p>
-        </div>
+				<p class="text-center"><h2>Albion</h2> <h5>(project name)</h5> <br>
+				A story of a man, seeking his past memories and trying to escape a mysterious ever-changing island. <br>
+				
+				
+				</p>
+			</div>
 		</div>
 	</div>
 </div>
 
 <div class="row">
   <div class="panel panel-default">
+    <!--<div class="panel-heading"> The Game! </div>-->
     <div class="panel-body">
       <div class="col-sm-24 col-md-12">
         <p class="text-center">
           <h2> Features </h2>
-          <div ng-repeat="feature in singleGamePost.features">
-            <li> {{feature}}</li>
-          </div>
+          <!--<ul class="list-group">-->
+          <!--<li  class="list-group-item">--><li>Randomly generated island</li>
+          <!--<li  class="list-group-item">--><li>Strong story about a mysterious island and the lineage of a family</li>
+          <li>Combat system with feel for rhytm and combinations</li>
+          <li>For the PC</li>
+          <!--</ul>-->
         </p>
       </div>
     </div>

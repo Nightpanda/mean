@@ -28,6 +28,16 @@ router.get('/blog', function(req, res, next) {
 	});
 });
 
+// Get all the Games
+router.get('/games', function(req, res, next) {
+	console.log("Request to fetch all games");
+
+	GamePost.find({}, function(err, results) { //Fetch everything
+		if(err){ return next(err); }
+		res.json(results);
+	});
+});
+
 //Fetch information for a single Blog
 router.get('/blog/:_id', function(req, res, next) {
 	console.log("request to fetch information for a single blogpost");
@@ -45,11 +55,43 @@ router.get('/blog/:_id', function(req, res, next) {
 	});
 });
 
+//Fetch information for a single game
+router.get('/games/:_id', function(req, res, next) {
+	console.log("request to fetch information for a single game");
+	
+		
+	GamePost.findById(req.params._id, function(err, results) {
+		if(err){return next(err); }
+		/*
+		req.results.populate('comments', function(err, results) {
+		if (err) { return next(err);}
+
+		res.json(results);
+	});*/
+		res.send(results);
+	});
+});
+
 //Post a blog post
 router.post('/blog', function(req, res, next) {
 	console.log("post a single blog post");
 	console.log(req);
 	var singleBlogPost = new BlogPost(req.body);
+	
+
+	singleBlogPost.save(function(err,post){
+		if(err){return next(err); }
+		//console.log(post);
+		res.json(singleBlogPost);
+
+	});
+});
+
+//Post a game post
+router.post('/games', function(req, res, next) {
+	console.log("post a single game post");
+	console.log(req);
+	var singleBlogPost = new GamePost(req.body);
 	
 
 	singleBlogPost.save(function(err,post){
@@ -145,6 +187,21 @@ router.put('/blog/:_id', function(req, res, next) {
 	
 	});
 	*/
+});
+
+//Post a comment about a game
+router.post('/games/:_id', function(req, res, next) {
+	console.log("post a comment about a certain game");
+
+	GamePost.findById(req.params._id, function(err, foundPost) {
+		foundPost.comments.push({body: req.body.body, author: req.body.author});
+		console.log(foundPost);
+		//console.log("results" + blogUpdate);
+		foundPost.save(function(err) {
+			if (!err) console.log("success!");
+		});
+
+	});
 });
 
 

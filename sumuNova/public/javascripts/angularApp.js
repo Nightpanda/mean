@@ -18,9 +18,17 @@ function($stateProvider, $urlRouterProvider) {
             
         })
 
-        .state('game', {
-            url: '/game',
-            templateUrl: 'templates/game.html'
+        .state('games', {
+            url: '/games',
+            templateUrl: 'templates/games.html',
+            controller: 'gamesCtrl'
+            
+        })
+
+        .state('singlegame', {
+            url: '/games/{gameId}',
+            templateUrl: 'templates/game.html',
+            controller: 'singleGameCtrl'
             
         })
 
@@ -190,3 +198,112 @@ function($stateProvider, $urlRouterProvider) {
 
 ])
     
+.controller('gamesCtrl', [
+    '$scope',
+    'gameApi',
+    '$stateParams',
+    function ($scope, gameApi, $stateParams){
+        $scope.gamePosts = gameApi.query(); //Send a request to get all posts (response defined in services.js)
+        //It's now an array of all the blogposts
+        //find the newest blogpost Id
+
+        $scope.gamePosts.$promise.then(function (result) {
+            arrayBlogs = $scope.gamePosts;
+  
+            lenBlogs = arrayBlogs.length;
+            latestBlog = arrayBlogs[lenBlogs-1];
+            blogId = latestBlog._id;
+            $scope.singlePost = gameApi.get({gameId: blogId }); //Request to get data of a single post.
+        });
+
+
+        
+
+        
+    //Add a single blogpost with ngresource method save
+    $scope.addGamePost = function(){
+        //if(!$scope.formtitle || $scope.formtitle === '') { return; } //if no title has been submited, don't post
+        //if(!$scope.formtext || $scope.formtext === '') { return; }
+        //if(!$scope.formauthor || $scope.formauthor === '') { return; } 
+    
+        //create a new instance to save
+        var newBlog = new gameApi();
+        //Put the data from the form into the new instance
+        newBlog.title = $scope.formtitle;
+        newBlog.body = $scope.formtext;
+        newBlog.features = $scope.formfeatures;
+        newBlog.downloadLink = $scope.formdownload;
+        newBlog.version = $scope.formversion;
+        newBlog.status =  $scope.formstatus;
+        newBlog.images = $scope.formimages;
+
+        newBlog.$save(); //Simply save the new Blogpost to the mass
+
+        $scope.formtitle = '';
+        $scope.formtext = '';
+        $scope.formauthor = '';
+        };
+    //Add a comment to a single blogpost
+    $scope.addComment = function(){
+        if(!$scope.formtext || $scope.formtext === '') { return; }        
+
+        var newComment = {body: $scope.formtext, author: $scope.formauthor};
+        gameApi.save({gameId: latestBlog._id}, newComment);
+
+        $scope.formtitle = '';
+        $scope.formtext = '';
+        $scope.formauthor = '';
+        };
+    //Upvote a single comment
+    /*
+    $scope.incrementUpvotes = function() {
+        $scope.singleBlogPost.comment.upvotes += 1;
+        }
+    */
+
+    }
+])
+
+.controller('singleGameCtrl', [
+    '$scope',
+    //'commentApi',
+    'gameApi',
+    '$stateParams',
+    //Get the information of a single blogpost.
+    function ($scope, gameApi, $stateParams){
+        $scope.gamePosts = gameApi.query(); //Send a request to get all posts (response defined in services.js)
+        console.log("client side request for single blogpost");
+        $scope.singleGamePost = gameApi.get({gameId: $stateParams.gameId}); //Request to get data of a single post.        
+        //var comments = $scope.singleBlogPost.comments;
+        
+        $scope.singlePost.$promise.then(function (result) {
+        currentBlog = $scope.singleGamePost;
+        //allComments = currentBlog.comments;
+        
+        //console.log(allComments);
+        $scope.singleGamePost = result;
+        });
+
+    //Add a comment to a single blogpost
+    $scope.addComment = function(){
+        //if(!$scope.formtitle || $scope.formtitle === '') { return; } //if no title has been submited, don't post
+        if(!$scope.formtext || $scope.formtext === '') { return; }        
+
+        //Read the information of the comment
+        var newComment = {body: $scope.formtext, author: $scope.formauthor};
+        
+        gameApi.save({gameId: currentBlog._id}, newComment);
+
+
+        $scope.formtitle = '';
+        $scope.formtext = '';
+        $scope.formauthor = '';
+        };
+    //Upvote a single comment
+    $scope.incrementUpvotes = function() {
+        $scope.singleBlogPost.comment.upvotes += 1;
+        }
+
+    }
+
+])

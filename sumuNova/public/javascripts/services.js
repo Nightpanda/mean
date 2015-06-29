@@ -14,23 +14,25 @@ blogServices.factory('blogApi', ['$resource',
 
 			},
 			update: {
-				method:'PUT'				
+				method:'PUT'
 			},
 		});
 	}]);
 
-/*
-blogServices.factory('commentApi', ['$resource',
+
+blogServices.factory('gameApi', ['$resource',
 	function($resource) {
-		return $resource('blog/:postId', {}, {
+		return $resource('games/:gameId', {}, {
 			query: {
 				method:'GET', 
 				params:{
-					postId: ''
+					gameId: ''
 				}, 
 				isArray:true,
 				//headers:{'Content-Type':'application/vnd.github.v3.raw+json; charset=UTF-8'}
 			},
+			update: {
+				method:'PUT'
+			},
 		});
 	}]);
-*/
