@@ -91,13 +91,13 @@ router.post('/blog', function(req, res, next) {
 router.post('/games', function(req, res, next) {
 	console.log("post a single game post");
 	console.log(req);
-	var singleBlogPost = new GamePost(req.body);
+	var singleGamePost = new GamePost(req.body);
 	
 
 	singleBlogPost.save(function(err,post){
 		if(err){return next(err); }
 		//console.log(post);
-		res.json(singleBlogPost);
+		res.json(singleGamePost);
 
 	});
 });

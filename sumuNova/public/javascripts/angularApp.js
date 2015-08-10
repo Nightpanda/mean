@@ -213,7 +213,7 @@ function($stateProvider, $urlRouterProvider) {
             lenBlogs = arrayBlogs.length;
             latestBlog = arrayBlogs[lenBlogs-1];
             blogId = latestBlog._id;
-            $scope.singlePost = gameApi.get({gameId: blogId }); //Request to get data of a single post.
+            $scope.singleGamePost = gameApi.get({gameId: blogId }); //Request to get data of a single post.
         });
 
 
@@ -271,12 +271,16 @@ function($stateProvider, $urlRouterProvider) {
     '$stateParams',
     //Get the information of a single blogpost.
     function ($scope, gameApi, $stateParams){
+        
         $scope.gamePosts = gameApi.query(); //Send a request to get all posts (response defined in services.js)
         console.log("client side request for single blogpost");
-        $scope.singleGamePost = gameApi.get({gameId: $stateParams.gameId}); //Request to get data of a single post.        
+
+
+        //$scope.singleGamePost = gameApi.get({gameId: $stateParams.gameId}); //Request to get data of a single post.        
+        $scope.singleGamePost = gameApi.get({gameId: $stateParams.gameId}); //Request to get data of a single post.
         //var comments = $scope.singleBlogPost.comments;
         
-        $scope.singlePost.$promise.then(function (result) {
+        $scope.singleGamePost.$promise.then(function (result) {
         currentBlog = $scope.singleGamePost;
         //allComments = currentBlog.comments;
         
